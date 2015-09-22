@@ -1,0 +1,27 @@
+web1:
+  build: .
+  expose:
+    - 80
+
+web2:
+  build: .
+  expose:
+    - 80
+
+web3:
+  build: .
+  expose:
+    - 80
+
+haproxy:
+  build: ./haproxy
+  links:
+   - web1
+   - web2
+   - web3
+  ports:
+   - "80:80"
+   - "8080:8080"
+  expose:
+   - "80"
+   - "8080"
